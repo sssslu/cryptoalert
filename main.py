@@ -40,7 +40,7 @@ def beeploww():
 
 # === 메인 루프 ===
 def main():
-    print("🚨 비트겟 급등락 감지기 시작 (10초마다 체크)")
+    print("🚨비트겟 급등락 감지기 by Slu")
     beepshort()
     prev_price = get_latest_price()
     if prev_price is None:
