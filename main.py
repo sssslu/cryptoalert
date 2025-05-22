@@ -47,7 +47,7 @@ def main():
         print("초기 가격 로딩 실패")
         return
 
-    print(f"시작 가격: {prev_price:.2f}")
+    print("")
 
     while True:
         time.sleep(CHECK_INTERVAL)
@@ -58,10 +58,16 @@ def main():
                 continue
 
             delta = (curr_price - prev_price) / prev_price
-            print(f"현재: {curr_price:.2f} | 변화: {delta*100:.2f}%")
+            print(f" {curr_price:.2f} |  {delta*100:.2f}%")
 
             if abs(delta) >= PRICE_CHANGE_THRESHOLD:
-                print("10초 내 급변 감지")
+                print("10초 내 급변 감지함")
+                beeplow()
+                beep()
+                beeplow()
+                beep()
+                beeplow()
+                beep()
                 beeplow()
                 beep()
                 beeplow()
