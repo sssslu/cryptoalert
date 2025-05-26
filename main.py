@@ -24,7 +24,7 @@ def get_latest_price():
         return float(data[0][4])  # 종가 (close)
     return None
 
-# === 사운드 시스템템 ===
+# === 사운드 시스템 ===
 def beep():
     winsound.Beep(frequency=1000, duration=300)
     
@@ -40,14 +40,14 @@ def beeploww():
 
 # === 메인 루프 ===
 def main():
-    print("🚨비트겟 급등락 감지기 by Slu")
+    print("🚨Bitcoin 급등락 감지기 by Slu - using BITGET API")
     beepshort()
     prev_price = get_latest_price()
     if prev_price is None:
         print("초기 가격 로딩 실패")
         return
 
-    print("")
+    print("")#사용자 이름이나 상표
 
     while True:
         time.sleep(CHECK_INTERVAL)
@@ -61,7 +61,7 @@ def main():
             print(f" {curr_price:.2f} |  {delta*100:.2f}%")
 
             if abs(delta) >= PRICE_CHANGE_THRESHOLD:
-                print("10초 내 급변 감지함")
+                print("@@@@ 10초 내 급변 감지함 @@@@")
                 beeplow()
                 beep()
                 beeplow()
