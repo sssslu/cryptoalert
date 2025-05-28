@@ -86,7 +86,7 @@ def main():
                 continue
 
             delta = (curr_price - prev_price) / prev_price
-            print(f" {curr_price:.2f} | {delta*100:.3f}%")
+            print(f"{curr_price:10.2f} | {delta*100:8.3f}%")
             line_count += 1
 
             if abs(delta) >= PRICE_CHANGE_THRESHOLD:
