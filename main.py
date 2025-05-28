@@ -9,6 +9,7 @@ GRANULARITY = "1m"
 CHECK_INTERVAL = 5              # 5초마다 체크
 PRICE_CHANGE_THRESHOLD = 0.004    # 변화 감지 threshold
 PRODUCT_TYPE = "usdt-futures"
+alNum = 0
 
 # === 비트겟 현재 가격 받아오기 ===
 
@@ -38,33 +39,40 @@ def beeplow():
     winsound.Beep(frequency=500, duration=300)
 
 
-def beepshort():
-    winsound.Beep(frequency=1200, duration=100)
+def beep_majestic():
+    # 웅장한 느낌을 위한 주파수와 길이 구성 (Hz, ms)
+    sequence = [
+        (400, 300),
+        (500, 200),
+        (600, 200),
+        (700, 200),
+        (800, 400),
+        (600, 300),
+        (500, 300)
+    ]
+    for freq, dur in sequence:
+        winsound.Beep(freq, dur)
+        time.sleep(0.05) 
 
 
-def beeploww():
-    winsound.Beep(frequency=432, duration=80)
-    
 def titleprint():
     print("🚨 Crypto Alert 🚨 by Slu Park / Bitget API")
-    print(f" Threshold Parameter : {PRICE_CHANGE_THRESHOLD*10} / {SYMBOL}")
+    print(
+        f" Threshold Parameter : {PRICE_CHANGE_THRESHOLD*10} / {SYMBOL} / @ {alNum}")
     print("")
 
 
 # === 메인 루프 ===
 def main():
-    
-    beeploww()
-    beeplow()
-    beep()
-    beepshort()
-    alcount = 0
+
+    beep_majestic()
+    global alNum
     prev_price = get_latest_price()
     if prev_price is None:
         print(" - ")
         return
     titleprint()
-    
+
     line_count = 0
 
     while True:
@@ -81,7 +89,7 @@ def main():
 
             if abs(delta) >= PRICE_CHANGE_THRESHOLD:
                 print("@@@@ 급변 감지함 @@@@")
-                alcount += 1
+                alNum += 1
                 for _ in range(7):
                     beeplow()
                     beep()
