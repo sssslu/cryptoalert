@@ -7,7 +7,7 @@ import os
 SYMBOL = "BTCUSDT"
 GRANULARITY = "1m"
 CHECK_INTERVAL = 5              # 5초마다 체크
-PRICE_CHANGE_THRESHOLD = 0.004    # 변화 감지 threshold
+PRICE_CHANGE_THRESHOLD = 0.04    # 변화 감지 threshold (0.01 이 1퍼센트)
 PRODUCT_TYPE = "usdt-futures"
 alNum = 0
 
@@ -61,7 +61,7 @@ def beep_majestic():
 def titleprint():
     print("🚨 Crypto Alert 🚨 by Slu Park / Bitget API")
     print(
-        f" Threshold Parameter : {PRICE_CHANGE_THRESHOLD*10} / {SYMBOL} / @ {alNum}")
+        f" Threshold Parameter : {PRICE_CHANGE_THRESHOLD} / {SYMBOL} / @ {alNum}")
 
 
 # === 메인 루프 ===
@@ -89,10 +89,10 @@ def main():
             print(f"{curr_price:10.2f} | {delta*100:8.3f}%")
             line_count += 1
 
-            if abs(delta) >= PRICE_CHANGE_THRESHOLD:
+            if abs(delta*100) >= PRICE_CHANGE_THRESHOLD:
                 print("@@@@ 급변 감지함 @@@@")
                 alNum += 1
-                for _ in range(7):
+                for _ in range(6):
                     beeplow()
                     beep()
 
