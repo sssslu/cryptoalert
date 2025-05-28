@@ -40,38 +40,40 @@ def beeplow():
 
 
 def beep_majestic():
-    # 웅장한 느낌을 위한 주파수와 길이 구성 (Hz, ms)
     sequence = [
-        (400, 300),
+        (400, 200),
         (500, 200),
         (600, 200),
         (700, 200),
-        (800, 400),
-        (600, 300),
-        (500, 300)
+        (800, 200),
+        (600, 200),
+        (500, 200),
+        (400, 200)
     ]
     for freq, dur in sequence:
+        print(".", end='', flush=True)  # ← 바로 출력되게 함
         winsound.Beep(freq, dur)
-        time.sleep(0.05) 
+        time.sleep(0.05)
+
+    print("")  # 줄바꿈
 
 
 def titleprint():
     print("🚨 Crypto Alert 🚨 by Slu Park / Bitget API")
     print(
         f" Threshold Parameter : {PRICE_CHANGE_THRESHOLD*10} / {SYMBOL} / @ {alNum}")
-    print("")
 
 
 # === 메인 루프 ===
 def main():
 
-    beep_majestic()
     global alNum
     prev_price = get_latest_price()
     if prev_price is None:
         print(" - ")
         return
     titleprint()
+    beep_majestic()
 
     line_count = 0
 
