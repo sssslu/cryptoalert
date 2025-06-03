@@ -56,6 +56,24 @@ def beep_majestic():
         time.sleep(0.05)
 
     print("")  # 줄바꿈
+    
+def beep_aggressive():
+    sequence = [
+        (1200, 150),
+        (1000, 150),
+        (1400, 150),
+        (900, 150),
+        (1600, 150),
+        (800, 150),
+        (1700, 150),
+        (700, 150),
+    ]
+    for freq, dur in sequence:
+        print("!", end='', flush=True)
+        winsound.Beep(freq, dur)
+        time.sleep(0.03)
+
+    print("")  # 줄바꿈
 
 
 def titleprint():
@@ -94,9 +112,12 @@ def main():
             if abs(delta*100) >= PRICE_CHANGE_THRESHOLD:
                 print("@@@@ 급변 감지함 @@@@")
                 alNum += 1
-                for _ in range(6):
+                for _ in range(3):
                     beeplow()
                     beep()
+            if abs(delta*20) >= PRICE_CHANGE_THRESHOLD:#임계값의 5배
+                beep_aggressive()
+                alNum += 1
 
             # === 40줄마다 화면 클리어 ===
             if line_count >= 40:
