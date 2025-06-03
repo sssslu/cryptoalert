@@ -7,7 +7,7 @@ import os
 SYMBOL = "BTCUSDT"
 GRANULARITY = "1m"
 CHECK_INTERVAL = 5              # 5초마다 체크
-PRICE_CHANGE_THRESHOLD = 0.04    # 변화 감지 threshold (0.01 이 1퍼센트)
+PRICE_CHANGE_THRESHOLD = 0.1    # 변화 감지 threshold (0.01 이 1퍼센트)
 PRODUCT_TYPE = "usdt-futures"
 alNum = 0
 
