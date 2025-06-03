@@ -82,7 +82,9 @@ def main():
         try:
             curr_price = get_latest_price()
             if curr_price is None:
+                line_count += 1
                 print(" - ")
+                time.sleep(CHECK_INTERVAL)
                 continue
 
             delta = (curr_price - prev_price) / prev_price
