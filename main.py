@@ -108,8 +108,11 @@ def main():
             delta = (curr_price - prev_price) / prev_price
             print(f"{curr_price:10.2f} | {delta*100:8.3f}%")
             line_count += 1
-
-            if abs(delta*100) >= PRICE_CHANGE_THRESHOLD:
+            
+            if abs(delta*100) >= PRICE_CHANGE_THRESHOLD:#임계값 절반반
+                beeplow()
+                    
+            if abs(delta*100) >= PRICE_CHANGE_THRESHOLD:#임계값
                 print("@@@@ 급변 감지함 @@@@")
                 alNum += 1
                 for _ in range(3):
